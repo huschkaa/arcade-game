@@ -31,6 +31,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x < 500) {
       this.x += this.speed * dt;
     } else {
+      //if the enemy has reached end of game board it ensures it is moved off game board
       this.x = -100;
       this.y = Math.floor(Math.random()*(maxvertical - minvertical + 1 ) + minvertical);
     }
@@ -52,16 +53,24 @@ var Player = function(x,y) {
 
 var player = new Player(200,400); /* sets starting position of the player*/
 
-// This class requires an update()
+// Function set if player collides with an enemy at same exact location then the player is reset
 Player.prototype.update = function() {
-
+  for (var i = 0; i < allEnemies.length; i++) {
+      if (this.y == allEnemies[i].y && (this.x < allEnemies[i].x + 101 && this.x + 101 > allEnemies[i].x)) {
+    this.reset();
+    }
+  };
 }
+//Player reset function for when a player collides with a bug or wins the game
+Player.prototype.reset = function () {
+  this.x = 200;
+  this.y = 400;
+};
 
 //This render function draws the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-//Function added to ensure code works properly need to determine what goes in the function
 
 // a handleInput() method.
 Player.prototype.handleInput = function(key) {
@@ -70,25 +79,25 @@ Player.prototype.handleInput = function(key) {
       if (this.x > 0) {
         this.x -= 100;
     }
-    break;
+      break;
     case 'right':
       if (this.x < 400) {
         this.x += 100;
     }
-    break;
+      break;
     case 'up':
       if (this.y > 40) {
         this.y -= 90;
     }
+      break;
+    case 'down':
+      if (this.y < 400) {
+        this.y += 90;
+    }
     else{
       this.reset();
     }
-    break;
-      case 'down':
-        if (this.y < 400) {
-          this.y += 90;
-    }
-    break;
+      break;
     }
  }
 
