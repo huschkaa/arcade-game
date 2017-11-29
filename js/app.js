@@ -4,6 +4,14 @@ var Enemy = function(x,y) {
     this.sprite = 'images/enemy-bug.png';
     this.x;
     this.y;
+    moveEnemy = this.x;
+    if (moveEnemy < 550) {
+      moveEnemy = moveEnemy+5;
+    }
+    else
+    {
+      
+    }
 };
 
 //Create enemy bugs that go across the screen
@@ -12,8 +20,7 @@ var allEnemies = [new Enemy(100,250)];
 // Update the enemy's position, required method for game. Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter. which will ensure the game runs at the same speed for all computers.
-    moveEnemy = this.x*dt;
-    moveEnemy++;
+
 };
 
 // Draw the enemy on the screen, required method for game
