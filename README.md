@@ -1,6 +1,34 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger Arcade Game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
+* [Install](#install)
+* [Game Instructions](#game instructions)
+* [Contributing](#contributing)
+* [License](#license)
+* [Improvements](#improvements)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Install
+```
+Ensure you have moved to a location in your directory where you want to copy the project via, "cd":
+
+$ Git Clone https://github.com/huschkaa/arcade-game
+```
+## Game Instructions
+
+This game is a play off the classic frogger game with a human player and pesky cockroaches as your enemy!
+
+###### Game Objective
+Move your player from the safe zone (grass) through enemy territory without colliding with any cockroaches.
+
+###### How to Win
+If you successfully make it across to the water you will score a point and win that round against the cockroaches! If you fail to make it across you will receive a cockroach collision.
+
+## Contributing
+
+This was a project for my Udacity Front End Development project. So a big shout out to them for helping in the development of this game. I highly recommend the program and if you are interested for more details, check out [Udacity](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001).
+
+## License
+Memory Game is Copyright © 2017 Andrew Huschka. It is free software, and may be redistributed under the terms specified in the [License](License.txt) file.
+
+## Improvements
+If you have any recommendations on improvements please send them through a git fork and I will review the changes. Based off the change I will let you know if it has been merged.
