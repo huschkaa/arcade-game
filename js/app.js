@@ -56,7 +56,7 @@ var player = new Player(200,400); /* sets starting position of the player*/
 // Function set if player collides with an enemy at same exact location then the player is reset
 Player.prototype.update = function() {
   for (var i = 0; i < allEnemies.length; i++) {
-      if (this.y == allEnemies[i].y && (this.x < allEnemies[i].x + 101 && this.x + 101 > allEnemies[i].x)) {
+      if ((this.y < allEnemies[i].y + 80 && this.y + 80 > allEnemies[i].y) && (this.x < allEnemies[i].x + 75 && this.x + 75 > allEnemies[i].x)) {
     this.reset();
     }
   };
