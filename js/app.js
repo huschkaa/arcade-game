@@ -1,5 +1,5 @@
 //Variables to be utilized in determining speed of enemies
-var maxspeed = 700;
+var maxspeed = 400;
 var minspeed = 100
 var normspeed = 50;
 //Variables to be utilized in determining height of enemies on the screen
@@ -31,19 +31,18 @@ Enemy.prototype.update = function(dt) {
     if (this.x < 500) {
       this.x += this.speed * dt;
     } else {
-      //if the enemy has reached end of game board it ensures it is moved off game board
+      //When bug reaches end of game board resets at random new location on game board
       this.x = -100;
       this.y = Math.floor(Math.random()*(maxvertical - minvertical + 1 ) + minvertical);
     }
   }
 
-
-// Draw the enemy on the screen, required method for game
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
+// This is the player class to setup location and load image
 var Player = function(x,y) {
     // The image/sprite for our player, this load images for our player.
     this.sprite = 'images/char-boy.png';
@@ -51,16 +50,45 @@ var Player = function(x,y) {
     this.y = y;
 };
 
-var player = new Player(200,400); /* sets starting position of the player*/
+//sets starting position of the player
+var player = new Player(200,400);
 
-// Function set if player collides with an enemy at same exact location then the player is reset
+//Setup scoreboard to track each time player makes it across to the water
+let score = 0;
+function gameScore(){
+    document.getElementById('gameScore').innerHTML = "Score: " + score;
+}
+//Setup scoreboard to track number of cockroach collisions
+let collision = 0;
+function collisionScore() {
+    document.getElementById('collisionScore').innerHTML = "Cockroach Collisions: " + collision;
+}
+
+
+/*
+Function set if player collides with an enemy at same exact location then the player is reset.
+Parameters used for 2D Collision:
+Rectangle = {x, y, width, height}
+Player Rectangle = {this.x, this.y, 70 ,80}
+Enemy Rectangle = {allEnemies[i].x, allEnemies[i].y, 98, 70}
+Measured height/width of enemy/player pixels to determine values above
+*/
 Player.prototype.update = function() {
   for (var i = 0; i < allEnemies.length; i++) {
-      if ((this.y < allEnemies[i].y + 80 && this.y + 80 > allEnemies[i].y) && (this.x < allEnemies[i].x + 75 && this.x + 75 > allEnemies[i].x)) {
-    this.reset();
-    }
-  };
-}
+      if ((this.y < allEnemies[i].y + 70 && 80 + this.y > allEnemies[i].y) && (this.x < allEnemies[i].x + 70 && this.x + 98 > allEnemies[i].x)) {
+        this.reset();
+        collision++;
+        collisionScore();
+      };
+
+      if (this.y < 10) {
+        this.reset();
+        score++;
+        gameScore();
+      };
+    };
+  }
+
 //Player reset function for when a player collides with a bug or wins the game
 Player.prototype.reset = function () {
   this.x = 200;
@@ -86,7 +114,7 @@ Player.prototype.handleInput = function(key) {
     }
       break;
     case 'up':
-      if (this.y > 40) {
+      if (this.y > 10) {
         this.y -= 90;
     }
       break;
@@ -94,18 +122,9 @@ Player.prototype.handleInput = function(key) {
       if (this.y < 400) {
         this.y += 90;
     }
-    else{
-      this.reset();
-    }
       break;
     }
  }
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
