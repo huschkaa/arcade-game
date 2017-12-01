@@ -1,10 +1,8 @@
 //Variables to be utilized in determining speed of enemies
-var maxspeed = 400;
+var maxspeed = 700;
 var minspeed = 100
 var normspeed = 50;
 //Variables to be utilized in determining height of enemies on the screen
-var maxvertical = 220;
-var minvertical = 40;
 
 // Enemies the player must avoid
 var Enemy = function(x,y) {
@@ -22,7 +20,7 @@ Enemy.prototype.randomspeed = function() {
 
 //Set inital location for the enemy bug - 3 bugs are utilized
 var allEnemies = [new Enemy(0, 40),
-                  new Enemy(0, 120),
+                  new Enemy(0, 130),
                   new Enemy(0, 220)];
 
 // Update the enemy's position, required method for game. Parameter: dt, a time delta between ticks
@@ -33,7 +31,6 @@ Enemy.prototype.update = function(dt) {
     } else {
       //When bug reaches end of game board resets at random new location on game board
       this.x = -100;
-      this.y = Math.floor(Math.random()*(maxvertical - minvertical + 1 ) + minvertical);
     }
   }
 
@@ -75,7 +72,7 @@ Measured height/width of enemy/player pixels to determine values above
 */
 Player.prototype.update = function() {
   for (var i = 0; i < allEnemies.length; i++) {
-      if ((this.y < allEnemies[i].y + 70 && 80 + this.y > allEnemies[i].y) && (this.x < allEnemies[i].x + 70 && this.x + 98 > allEnemies[i].x)) {
+      if ((this.y == allEnemies[i].y) && (this.x < allEnemies[i].x + 70 && this.x + 98 > allEnemies[i].x)) {
         this.reset();
         collision++;
         collisionScore();
