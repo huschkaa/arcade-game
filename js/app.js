@@ -74,12 +74,14 @@ Player.prototype.update = function() {
   for (var i = 0; i < allEnemies.length; i++) {
       if ((this.y == allEnemies[i].y) && (this.x < allEnemies[i].x + 70 && this.x + 98 > allEnemies[i].x)) {
         this.reset();
+        //update collision scoreboad
         collision++;
         collisionScore();
       };
-
+      //reset player if they make it to the river and win
       if (this.y < 10) {
         this.reset();
+        //update scoreboard
         score++;
         gameScore();
       };
