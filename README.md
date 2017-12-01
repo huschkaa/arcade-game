@@ -2,7 +2,7 @@
 
 ## Table of Contents
 * [Install](#install)
-* [Game Instructions](#game instructions)
+* [Instructions](#instructions)
 * [Contributing](#contributing)
 * [License](#license)
 * [Improvements](#improvements)
