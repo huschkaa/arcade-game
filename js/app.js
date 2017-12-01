@@ -1,6 +1,6 @@
 //Variables to be utilized in determining speed of enemies
 var maxspeed = 700;
-var minspeed = 100
+var minspeed = 100;
 var normspeed = 50;
 //Variables to be utilized in determining height of enemies on the screen
 
@@ -32,7 +32,7 @@ Enemy.prototype.update = function(dt) {
       //When bug reaches end of game board resets at random new location on game board
       this.x = -100;
     }
-  }
+  };
 
 // Draw the enemy on the screen
 Enemy.prototype.render = function() {
@@ -77,16 +77,16 @@ Player.prototype.update = function() {
         //update collision scoreboad
         collision++;
         collisionScore();
-      };
+      }
       //reset player if they make it to the river and win
       if (this.y < 10) {
         this.reset();
         //update scoreboard
         score++;
         gameScore();
-      };
-    };
-  }
+      }
+    }
+  };
 
 //Player reset function for when a player collides with a bug or wins the game
 Player.prototype.reset = function () {
@@ -123,7 +123,7 @@ Player.prototype.handleInput = function(key) {
     }
       break;
     }
- }
+ };
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
